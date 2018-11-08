@@ -3,6 +3,7 @@ pool:
 
 steps:
 - script: |
-    npm install markdownlint-cli
-    node ./node_modules/markdownlint-cli/markdownlint Guidelines.md
+    cd azure-pipelines
+    npm ci
+    nom test
   displayName: 'Lint Guidelines.md'
