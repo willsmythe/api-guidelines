@@ -5,5 +5,5 @@ steps:
 - script: |
     cd azure-pipelines
     npm ci
-    nom test
+    npm test
   displayName: 'Lint Guidelines.md'
