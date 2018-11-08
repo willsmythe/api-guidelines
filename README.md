@@ -1,4 +1,7 @@
 # Microsoft REST API Guidelines
+
+[![Build Status](https://dev.azure.com/ms/api-guidelines/_apis/build/status/willsmythe.api-guidelines)](https://dev.azure.com/ms/api-guidelines/_build/latest?definitionId=2)
+
 The [Microsoft REST API Guidelines](Guidelines.md), as a design principle, encourages application developers to have resources accessible to them via a RESTful HTTP interface. To provide the smoothest possible experience for developers on platforms following the Microsoft REST API Guidelines, REST APIs SHOULD follow [consistent design guidelines](Guidelines.md#7-consistency-fundamentals) to make using them easy and intuitive.
 
 ## Code of Conduct
