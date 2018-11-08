@@ -3,6 +3,6 @@ pool:
 
 steps:
 - script: |
-    npm install -g markdownlint-cli@0.13.0
-    markdownlint Guidelines.md
+    npm install markdownlint-cli
+    node ./node_modules/markdownlint-cli/markdownlint Guidelines.md
   displayName: 'Lint Guidelines.md'
