@@ -1,0 +1,8 @@
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- script: |
+    npm install -g markdownlint-cli@0.13.0
+    markdownlint Guidelines.md
+  displayName: 'Lint Guidelines.md'

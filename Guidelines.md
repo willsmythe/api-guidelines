@@ -12,8 +12,6 @@ Rob Howard (ASG)             | Peter Torr  (OSG)                      | Chris Mu
 Document editors: John Gossman (C+E), Chris Mullins (ASG), Gareth Jones (ASG), Rob Dolin (C+E), Mark Stafford (C+E)<br/>
 </div>
 
-# Microsoft REST API Guidelines
-
 ## 1. Abstract
 The Microsoft REST API Guidelines, as a design principle, encourages application developers to have resources accessible to them via a RESTful HTTP interface.
 To provide the smoothest possible experience for developers on platforms following the Microsoft REST API Guidelines, REST APIs SHOULD follow consistent design guidelines to make using them easy and intuitive.
@@ -305,16 +303,14 @@ https://api.contoso.com/v1.0/items?url=https://resources.contoso.com/shoes/fancy
 The HTTP 1.1 message format, defined in RFC 7230, in section [3.1.1][rfc-7230-3-1-1], defines no length limit on the Request Line, which includes the target URL.
 From the RFC:
 
-> HTTP does not place a predefined limit on the length of a
-   request-line. [...] A server that receives a request-target longer than any URI it wishes to parse MUST respond
-   with a 414 (URI Too Long) status code.
+> HTTP does not place a predefined limit on the length of a request-line. [...] A server that receives a request-target longer than any URI it wishes to parse MUST respond with a 414 (URI Too Long) status code.
 
 Services that can generate URLs longer than 2,083 characters MUST make accommodations for the clients they wish to support.
 Here are some sources for determining what target clients support:
 
- * [http://stackoverflow.com/a/417184](http://stackoverflow.com/a/417184)
- * [https://blogs.msdn.microsoft.com/ieinternals/2014/08/13/url-length-limits/](https://blogs.msdn.microsoft.com/ieinternals/2014/08/13/url-length-limits/)
- 
+- [http://stackoverflow.com/a/417184](http://stackoverflow.com/a/417184)
+- [https://blogs.msdn.microsoft.com/ieinternals/2014/08/13/url-length-limits/](https://blogs.msdn.microsoft.com/ieinternals/2014/08/13/url-length-limits/)
+
 Also note that some technology stacks have hard and adjustable url limits, so keep this in mind as you design your services.
 
 ### 7.3. Canonical identifier
@@ -1121,7 +1117,7 @@ The Web has coalesced around the [ECMAScript subset of ISO 8601 date formats (IS
 For those cases, this document defines a JSON serialization format that can be used to unambiguously represent dates in different formats.
 Other serialization formats (such as XML) could be derived from this format.
 
-#### 11.3.1. The `DateLiteral` format 
+#### 11.3.1. The `DateLiteral` format
 Dates represented in JSON are serialized using the following grammar.
 Informally, a `DateValue` is either an ISO 8601-formatted string or a JSON object containing two properties named `kind` and `value` that together define a point in time.
 The following is not a context-free grammar; in particular, the interpretation of `DateValue` depends on the value of `DateKind`, but this minimizes the number of productions required to describe the format.
@@ -1672,7 +1668,7 @@ Operations SHOULD transition to "tombstone" for an additional period of time pri
 
 ## 14. Throttling, Quotas, and Limits
 ### 14.1. Principles
-Services should be as responsive as possible, so as not to block callers. 
+Services should be as responsive as possible, so as not to block callers.
 As a rule of thumb any API call that is expected to take longer than 0.5 seconds in the 99th percentile, should consider using the Long-running Operations pattern for those calls.
 Obviously, services cannot guarantee these response times in the face of potentially unlimited load from callers. Services should therefore design and document call request limits for clients, and respond with appropriate, actionable errors and error messages if these limits are exceeded.
 Services should respond quickly with an error when they are generally overloaded, rather than simply respond slowly.
@@ -1694,7 +1690,7 @@ The Retry-After header is the standard way for responding to clients who are bei
 It is also common, but optional, in the case of limits and quotas (but not overall system load) to respond with header describing the limit that was exceeded.
 However, services across Microsoft and the industry use a wide range of different headers for this purpose.
 We recommend using three headers to describe the limit, the number of calls remaining under the limit, and the time when the limit will reset.
-However, other headers may be appropriate for specific types of limits. In all cases these must be documented. 
+However, other headers may be appropriate for specific types of limits. In all cases these must be documented.
 
 ### 14.4. Service Guidance
 Services should choose time windows as appropriate for the SLAs or business objectives.
@@ -1762,7 +1758,7 @@ See: https://docs.microsoft.com/en-us/azure/architecture/best-practices/transien
 Ideally, 429 and 503 returns are so low cost that even clients that retry immediately can be handled.
 In these cases, if possible the service team should make an effort to contact or fix the client.
 If it is a known partner, a bug or incident should be filed.
-In extreme cases it may be necessary to use DoS style protections such as blocking the caller. 
+In extreme cases it may be necessary to use DoS style protections such as blocking the caller.
 
 ## 15. Push notifications via webhooks
 ### 15.1. Scope
@@ -1821,7 +1817,7 @@ For a per-user subscription, app registration is either manual or automated.
 The call flow for a per-user subscription MUST follow the diagram below.
 It shows the end user making use of one of the service's APIs, and again, the same two things MUST be stored:
 
-1. The service MUST store the end user's act of consent to receiving notifications from this specific application (typically a background usage OAUTH scope).   
+1. The service MUST store the end user's act of consent to receiving notifications from this specific application (typically a background usage OAUTH scope).
 2. The subscribing application MUST store the end user's tokens in order to call back for details once notified of changes.  
 
 In this case, the subscription is set up programmatically using the end-user's token from the subscribing application.
@@ -2171,7 +2167,7 @@ Services SHOULD NOT use the following names:
 
 ### 17.4. Forming compound names
 - Services SHOULD avoid using articles such as 'a', 'the', 'of' unless needed to convey meaning.
-	- e.g. names such as aUser, theAccount, countOfBooks SHOULD NOT be used, rather user, account, bookCount SHOULD be preferred.
+  - e.g. names such as aUser, theAccount, countOfBooks SHOULD NOT be used, rather user, account, bookCount SHOULD be preferred.
 - Services SHOULD add a type to a property name when not doing so would cause ambiguity about how the data is represented or would cause the service not to use a common property name.
 - When adding a type to a property name, services MUST add the type at the end, e.g. createdDateTime.
 
@@ -2180,7 +2176,7 @@ Services SHOULD NOT use the following names:
 - For OData services, the service MUST use the OData @id property to represent the canonical identifier of the resource.
 - Services MAY use the simple 'id' property to represent a local or legacy primary key value for a resource.
 - Services SHOULD use the name of the relationship postfixed with 'Id' to represent a foreign key to another resource, e.g. subscriptionId.
-	- The content of this property SHOULD be the canonical ID of the referenced resource.
+  - The content of this property SHOULD be the canonical ID of the referenced resource.
 
 ### 17.6. Date and time properties
 
@@ -2195,7 +2191,7 @@ Services SHOULD NOT use the following names:
 ### 17.8. Collections and counts
 - Services MUST name collections as plural nouns or plural noun phrases using correct English.
 - Services MAY use simplified English for nouns that have plurals not in common verbal usage.
-	- e.g. schemas MAY be used instead of schemata.
+  - e.g. schemas MAY be used instead of schemata.
 - Services MUST name counts of resources with a noun or noun phrase suffixed with 'Count'.
 
 ### 17.9. Common property names
@@ -2365,6 +2361,7 @@ note right of App Server: Update status and cache new "since" token
 
 === End Text ===
 ```
+
 [fielding]: https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm
 [IANA-headers]: http://www.iana.org/assignments/message-headers/message-headers.xhtml
 [rfc7231-7-1-1-1]: https://tools.ietf.org/html/rfc7231#section-7.1.1.1

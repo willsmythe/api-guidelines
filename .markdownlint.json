@@ -1,0 +1,17 @@
+{
+    "line-length": false,
+    "blanks-around-headings": false,
+    "no-inline-html": {
+        "allowed_elements": [ 
+            "div",
+            "br",
+            "small",
+            "ul",
+            "li"
+        ]
+    },
+    "ul-indent": false,
+    "no-bare-urls": false,
+    "fenced-code-language": false,
+    "blanks-around-lists": false
+}
